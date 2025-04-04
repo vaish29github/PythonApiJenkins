@@ -3,16 +3,16 @@ pipeline {
     
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal'
-        RESOURCE_GROUP = 'python-webapp-rg-02'
-        APP_SERVICE_NAME = 'python-webapp-service-1408003'
-        PYTHON_VERSION = '3.10'
-        PYTHON_PATH = 'C:\\Users\\window 10\\AppData\\Local\\Programs\\Python\\Python310\\python.exe'
+        RESOURCE_GROUP = 'python-webapp-rg-2912'
+        APP_SERVICE_NAME = 'python-webapp-service-2912'
+        PYTHON_VERSION = '3.12'
+        PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
     }
     
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: ''
+                git branch: 'main', url: 'https://github.com/vaish29github/PythonApiJenkins.git'
             }
         }
         
