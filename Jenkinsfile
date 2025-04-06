@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: ''
+                git branch: 'main', url: 'https://github.com/vaish29github/PythonApiJenkins.git'
             }
         }
         
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // Use 'python' command directly without specifying path
                 bat '''
-                    python --version
+                    C:\Windows\System32\cmd.exe /c python --version
                     python -m pip install --upgrade pip
                     python -m pip install -r requirements.txt
                 '''
