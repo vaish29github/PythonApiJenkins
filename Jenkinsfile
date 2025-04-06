@@ -20,9 +20,9 @@ pipeline {
             steps {
                 // Use 'python' command directly without specifying path
                 bat '''
-                    python --version
-                    python -m pip install --upgrade pip
-                    python -m pip install -r requirements.txt
+                    "%PYTHON_PATH%" --version
+                    "%PYTHON_PATH%" -m pip install --upgrade pip
+                    "%PYTHON_PATH%" -m pip install -r requirements.txt
                 '''
             }
         }
