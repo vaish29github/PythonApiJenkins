@@ -47,6 +47,6 @@ pipeline {
                     bat 'az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path ./deploy.zip --timeout 1800'
                 }
             }
-        }
+        }
     }
 }
