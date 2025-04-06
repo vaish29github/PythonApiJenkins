@@ -8,7 +8,7 @@ pipeline {
         PYTHON_VERSION = '3.10'
         PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
         AZURE_CLI_PATH = 'C:\\Program Files (x86)\\Microsoft SDKs\\Azure\\CLI2\\wbin'
-        CMD_PATH = 'C:\\Windows\\System32\\cmd'
+        CMD_PATH = 'C:\\Windows\\System32'
     }
     
     stages {
