@@ -2,10 +2,11 @@ pipeline {
     agent any
     
     environment {
-        AZURE_CREDENTIALS_ID = 'azure-service-principal'
+        AZURE_CREDENTIALS_ID = 'python-service-principal'
         RESOURCE_GROUP = 'python-webapp-rg-02'
         APP_SERVICE_NAME = 'python-webapp-service-1408003'
         PYTHON_VERSION = '3.10'
+        PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
     }
     
     stages {
