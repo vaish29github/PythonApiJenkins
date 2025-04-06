@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // Use 'python' command directly without specifying path
                 bat '''
-                    C:\Windows\System32\cmd.exe /c python --version
+                    C://Windows//System32//cmd.exe /c python --version
                     python -m pip install --upgrade pip
                     python -m pip install -r requirements.txt
                 '''
