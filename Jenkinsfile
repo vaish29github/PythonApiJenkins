@@ -2,28 +2,26 @@ pipeline {
     agent any
     
     environment {
-        AZURE_CREDENTIALS_ID = 'python-service-principal'
-        RESOURCE_GROUP = 'python-webapp-rg-2912'
-        APP_SERVICE_NAME = 'python-webapp-service-2912'
-        PYTHON_VERSION = '3.12.8'
-        PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
-        AZURE_CLI_PATH = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin\\az'  // Added Azure CLI path
-        CMD_PATH = 'C:\\Windows\\System32\\cmd.exe'
+        AZURE_CREDENTIALS_ID = 'azure-service-principal'
+        RESOURCE_GROUP = 'python-webapp-rg-02'
+        APP_SERVICE_NAME = 'python-webapp-service-1408003'
+        PYTHON_VERSION = '3.10'
     }
     
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/vaish29github/PythonApiJenkins.git'
+                git branch: 'main', url: ''
             }
         }
         
         stage('Build') {
             steps {
+                // Use 'python' command directly without specifying path
                 bat '''
-                    "%PYTHON_PATH%" --version
-                    "%PYTHON_PATH%" -m pip install --upgrade pip
-                    "%PYTHON_PATH%" -m pip install -r requirements.txt
+                    python --version
+                    python -m pip install --upgrade pip
+                    python -m pip install -r requirements.txt
                 '''
             }
         }
@@ -31,9 +29,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
-                    // Add Azure CLI to PATH
-                    bat 'set PATH=%AZURE_CLI_PATH%;%PATH%'
-                    
                     // Login to Azure
                     bat 'az login --service-principal -u "%AZURE_CLIENT_ID%" -p "%AZURE_CLIENT_SECRET%" --tenant "%AZURE_TENANT_ID%"'
                     bat 'az group create --name %RESOURCE_GROUP% --location eastus'
@@ -50,4 +45,13 @@ pipeline {
             }
         }
     }
+    
+    post {
+        success {
+            echo 'Deployment Successful!'
+        }
+        failure {
+            echo 'Deployment Failed!'
+        }
+    }
 }
