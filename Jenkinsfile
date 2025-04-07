@@ -19,9 +19,10 @@ pipeline {
         stage('Build') {
             steps {
                 powershell '''
-                    & "$env:PYTHON_PATH" --version
-                    & "$env:PYTHON_PATH" -m pip install --upgrade pip
-                    & "$env:PYTHON_PATH" -m pip install -r requirements.txt
+                    $python = "$env:PYTHON_PATH"
+                    & $python --version
+                    & $python -m pip install --upgrade pip
+                    & $python -m pip install -r requirements.txt
                 '''
             }
         }
