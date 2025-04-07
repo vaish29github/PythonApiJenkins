@@ -19,7 +19,6 @@ pipeline {
         stage('Build') {
             steps {
                 bat '''
-                    python = "%PYTHON_PATH%"
                     python --version
                     python -m pip install --upgrade pip
                     python -m pip install -r requirements.txt
