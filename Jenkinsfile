@@ -6,7 +6,7 @@ pipeline {
         RESOURCE_GROUP = 'python-webapp-rg-2912'
         APP_SERVICE_NAME = 'python-webapp-service-2912'
         PYTHON_VERSION = '3.10'
-        PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
+        //PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
     }
 
     stages {
@@ -19,7 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 powershell '''
-                    $python = "$env:PYTHON_PATH"
+                    $python = "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
                     & $python --version
                     & $python -m pip install --upgrade pip
                     & $python -m pip install -r requirements.txt
