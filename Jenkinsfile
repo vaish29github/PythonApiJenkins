@@ -31,8 +31,8 @@ pipeline {
                 withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
                     powershell '''
                         az login --service-principal `
-                            -u "$env:AZURE_CLIENT_ID" `
-                            -p "$env:AZURE_CLIENT_SECRET" `
+                            --username "$env:AZURE_CLIENT_ID" `
+                            --password "$env:AZURE_CLIENT_SECRET" `
                             --tenant "$env:AZURE_TENANT_ID"
 
                         az group create `
