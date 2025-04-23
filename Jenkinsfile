@@ -7,6 +7,9 @@ pipeline {
         APP_SERVICE_NAME = 'python-webapp-service-2912'
         PYTHON_VERSION = '3.10'
         PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
+        AZURE_CLI_PATH    = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin'
+        CMD_PATH          = 'C:\\Windows\\System32'
+        PATH              = "${PYTHON_PATH};${AZURE_CLI_PATH};${CMD_PATH};${PATH}"
     }
 
     stages {
