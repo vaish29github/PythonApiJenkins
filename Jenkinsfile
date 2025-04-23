@@ -9,7 +9,8 @@ pipeline {
         PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
         AZURE_CLI_PATH    = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin'
         CMD_PATH          = 'C:\\Windows\\System32'
-        PATH              = "${PYTHON_PATH};${AZURE_CLI_PATH};${CMD_PATH};${PATH}"
+        POWERSHELL_PATH   = 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'
+        PATH              = "${PYTHON_PATH};${AZURE_CLI_PATH};${CMD_PATH};${POWERSHELL_PATH};${PATH}"
     }
 
     stages {
