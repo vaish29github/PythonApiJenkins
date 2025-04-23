@@ -9,8 +9,7 @@ pipeline {
         PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
         AZURE_CLI_PATH    = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin'
         CMD_PATH          = 'C:\\Windows\\System32'
-        POWERSHELL_PATH   = 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'
-        PATH              = "${PYTHON_PATH};${AZURE_CLI_PATH};${CMD_PATH};${POWERSHELL_PATH};${PATH}"
+        PATH              = "${PYTHON_PATH};${AZURE_CLI_PATH};${CMD_PATH};${PATH}"
     }
 
     stages {
@@ -36,7 +35,7 @@ pipeline {
                     bat 'az appservice plan create --name %APP_SERVICE_NAME%-plan --resource-group %RESOURCE_GROUP% --sku B1 --is-linux'
                     bat 'az webapp create --resource-group %RESOURCE_GROUP% --plan %APP_SERVICE_NAME%-plan --name %APP_SERVICE_NAME% --runtime "PYTHON|%PYTHON_VERSION%"'
                     bat 'az webapp config set --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --startup-file "gunicorn --bind=0.0.0.0 --timeout 600 app:app"'
-                    powershell 'Compress-Archive -Path ./* -DestinationPath ./deploy.zip -Force'
+                    bat 'python -m zipfile -c deploy.zip *'
                     bat 'az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path ./deploy.zip --timeout 1800'
                 }
             }
