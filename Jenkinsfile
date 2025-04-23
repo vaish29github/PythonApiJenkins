@@ -4,7 +4,7 @@ pipeline {
     environment {
         AZURE_CREDENTIALS_ID = 'python-service-principal'
         RESOURCE_GROUP = 'python-webapp-rg-2912'
-        APP_SERVICE_NAME = 'python-webapp-service-vaish291201'
+        APP_SERVICE_NAME = 'python-webapp-service-vaish29'
         PYTHON_VERSION = '3.10'
         PYTHON_PATH = 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\python.exe'
         AZURE_CLI_PATH    = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin'
@@ -36,7 +36,7 @@ pipeline {
                     bat 'az appservice plan create --name %APP_SERVICE_NAME%-plan --resource-group %RESOURCE_GROUP% --sku B1 --is-linux'
                     bat 'az webapp create --resource-group %RESOURCE_GROUP% --plan %APP_SERVICE_NAME%-plan --name %APP_SERVICE_NAME% --runtime "PYTHON|%PYTHON_VERSION%"'
                     bat 'az webapp config set --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --startup-file "gunicorn --bind=0.0.0.0 --timeout 600 app:app"'
-                    powershell 'Compress-Archive -Path ./* -DestinationPath ./deploy.zip -Force'
+                    sh 'Compress-Archive -Path ./* -DestinationPath ./deploy.zip -Force'
                     bat 'az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path ./deploy.zip --timeout 1800'
                 }
             }
