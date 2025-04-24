@@ -43,7 +43,7 @@ pipeline {
 
             bat 'python -c "import shutil; shutil.make_archive(\'deploy\', \'zip\', \'.\')"'
 
-            bat 'az webapp deployment source config-zip --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src deploy.zip'
+            bat 'az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path deploy.zip --type zip --timeout 1800'
         }
     }
 }
